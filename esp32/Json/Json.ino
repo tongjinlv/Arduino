@@ -11,6 +11,7 @@
 
 void setup() {
   pinMode(BUILTIN_LED, OUTPUT);     // Initialize the BUILTIN_LED pin as an output
+  Serial.begin(115200);
 }
 
 // the loop function runs over and over again forever
@@ -20,5 +21,10 @@ void loop() {
                                     // it is acive low on the ESP-01)
   delay(100);                      // Wait for a second
   digitalWrite(BUILTIN_LED, HIGH);  // Turn the LED off by making the voltage HIGH
-  delay(200);                      // Wait for two seconds (to demonstrate the active low LED)
+  delay(200);   
+  if(touchRead(T0)<50)Serial.println("T0 Press"); // Wait for two seconds (to demonstrate the active low LED)
+  int val = hallRead();
+  // print the results to the serial monitor:
+  //Serial.print("sensor = ");
+  Serial.println(val);//to graph 
 }
